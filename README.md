@@ -20,7 +20,7 @@ curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi.s
 for ODROID XU4
 
 ```
-curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi.sh > /tmp/install_unifi.sh && sudo bash /tmp/install_unifi_odroid_xu4.sh
+curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi_odroid_xu4.sh > /tmp/install_unifi_odroid_xu4.sh && sudo bash /tmp/install_unifi_odroid_xu4.sh
 
 ```
 
