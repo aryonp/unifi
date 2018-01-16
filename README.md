@@ -1,11 +1,11 @@
 # Ubiquiti Unifi System Installation Automator
 
 ease my works using Ubiquiti Unifi products on Debian/Ubuntu based server.
-It will install the newest Unifi Controller together with Unifi Video 3.8.5
+It will install the newest Unifi Controller together with Unifi Video 3.8.5 (Not available on ODROID version)
 
 ## Requirements
 
-You need to install Ubuntu Server 16.04.3 LTS and get its IP fixed
+You need to install Ubuntu Server 16.04.3 LTS on some PC/Mini-PC or ODROID XU4 with minimal server installation and get its IP fixed
 
 
 ### Installing
@@ -17,11 +17,18 @@ curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi.s
 
 ```
 
+for ODROID XU4
+
+```
+curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi.sh > /tmp/install_unifi.sh && sudo bash /tmp/install_unifi_odroid_xu4.sh
+
+```
+
 ### What it did
 
 1. It will update your system first
 2. Add needed repositories
-3. Install newest unifi controller and video 3.8.5
+3. Install newest unifi controller and video 3.8.5 (not available on ODROID version)
 4. Since openjava will slow you down, it will install Oracle Java 8 with JCE Unlimited Strength Jurisdiction Policy
 5. Restarting unifi services
 
