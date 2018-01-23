@@ -13,18 +13,22 @@ echo "** Add & update needed repositories"
 echo "** Install main software"
 {
 	sudo apt install -y unifi
-	sudo wget -O /tmp/unifi-video.deb https://dl.ubnt.com/firmwares/ufv/v3.8.5/unifi-video.Debian7_amd64.v3.8.5.deb
+	sudo wget -O /tmp/unifi-video.deb https://dl.ubnt.com/firmwares/ufv/v3.9.0/unifi-video.Ubuntu16.04_amd64.v3.9.0.debU
 	sudo dpkg -i /tmp/unifi-video.deb
+	sudo apt install -f
+	sudo wget -O /tmp/unifi-voip.deb https://dl.ubnt.com/unifi-voip/1.0.5-kxe7d9/unifi_voip_sysvinit_all.deb
+	sudo dpkg -i /tmp/unifi-voip.deb
 	sudo apt install -f
 } &> /dev/null
 
 echo "** Install supporting software"
 sudo apt install -y software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy &> /dev/null
 
-echo "** Restart services"
+echo "** Restart all services"
 {
 	sudo service unifi restart
 	sudo service unifi-video restart
+	sudo service unifi-voip
 } &> /dev/null
 
 echo "** Installation done"
