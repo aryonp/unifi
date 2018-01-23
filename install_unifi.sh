@@ -20,7 +20,7 @@ echo "** Install main software"
 } &> /dev/null
 
 echo "** Install supporting software"
-sudo apt install -y software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy &> /dev/null
+sudo apt install -y software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy
 
 echo "** Restart all services"
 {
