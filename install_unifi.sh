@@ -14,7 +14,7 @@ echo "** Add & update needed repositories"
 echo "** Install main software"
 {
 	sudo apt install -y unifi unifi-voip
-	sudo wget -O /tmp/unifi-video.deb https://dl.ubnt.com/firmwares/ufv/v3.9.0/unifi-video.Ubuntu16.04_amd64.v3.9.0.debU
+	sudo wget -O /tmp/unifi-video.deb https://dl.ubnt.com/firmwares/ufv/v3.9.0/unifi-video.Ubuntu16.04_amd64.v3.9.0.deb
 	sudo dpkg -i /tmp/unifi-video.deb
 	sudo apt install -f
 } &> /dev/null
