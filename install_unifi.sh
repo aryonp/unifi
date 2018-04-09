@@ -24,13 +24,15 @@ echo "** Install main software"
 } &> /dev/null
 
 echo "** Install supporting software"
-sudo apt install -y software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy
+sudo apt install -y logrotate software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy
 
 echo "** Restart all services"
 {
 	sudo service unifi restart
 	sudo service unifi-video restart
 	sudo service unifi-voip restart
+	sudo systemctl disable mongodb
+	sudo systemctl stop mongodb
 } &> /dev/null
 
 echo "** Installation done"
