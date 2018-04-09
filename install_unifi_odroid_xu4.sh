@@ -13,9 +13,12 @@ echo "** Install main software"
 sudo apt install -y unifi &> /dev/null
 
 echo "** Install supporting software"
-sudo apt install -y software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy &> /dev/null
+sudo apt install -y logrotate software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy &> /dev/null
 
 echo "** Restart services"
-sudo service unifi restart &> /dev/null
+sudo systemctl enable unifi
+sudo systemctl start unifi
+sudo systemctl disable mongodb
+sudo systemctl stop mongodb
 
 echo "** Installation done"
