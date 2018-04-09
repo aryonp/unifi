@@ -35,4 +35,17 @@ echo "** Restart all services"
 	sudo systemctl stop mongodb
 } &> /dev/null
 
+echo "** Add Log Rotation"
+sudo bash -c 'cat >> /etc/logrotate.d/unifi << EOF
+/var/log/unifi/*.log {
+    rotate 5
+    daily
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+}
+EOF'
+
 echo "** Installation done"
