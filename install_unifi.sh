@@ -1,33 +1,34 @@
 #!/usr/bin/env bash
 clear
 
-url = "https://raw.githubusercontent.com/aryonp/unifi/master"
-ufv_latest = "${url}/ufv-latest"
+v_video=v3.10.2
+v_voip=1.0.5-kxe7d9
 
 echo "** Starting installation"
 echo "** Add & update needed repositories"
-echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" | sudo tee /etc/apt/sources.list.d/100-ubnt-unifi.list
-echo "deb http://dl.ubnt.com/unifi-voip/stage/debian beta ubiquiti" | sudo tee /etc/apt/sources.list.d/110-ubnt-unifi-voip.list
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 52F815F3
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 
-sudo apt-add-repository -y ppa:webupd8team/java
+echo 'deb http://www.ui.com/downloads/unifi/debian stable ubiquiti' | sudo tee /etc/apt/sources.list.d/100-ubnt-unifi.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 sudo apt update
 
+echo "** Install supporting software"
+sudo apt install -y apt-transport-https logrotate software-properties-common openjdk-8-jdk
+
 echo "** Install main software"
-sudo apt install -y unifi unifi-voip
-sudo wget -O /tmp/unifi-video.deb "https://dl.ubnt.com/firmwares/ufv/${ufv_latest}/unifi-video.Ubuntu16.04_amd64.${ufv_latest}.deb"
+sudo apt install -y unifi 
+sudo wget -O /tmp/unifi-video.deb "https://dl.ubnt.com/firmwares/ufv/${v_video}/unifi-video.Ubuntu18.04_amd64.${v_video}.deb"
+sudo wget -O /tmp/unifi-voip.deb "https://dl.ubnt.com/unifi-voip/${v_voip}/unifi_voip_sysvinit_all.deb"
 sudo dpkg -i /tmp/unifi-video.deb
+sudo dpkg -i /tmp/unifi_voip.deb
 sudo apt install -f
 
-echo "** Install supporting software"
-sudo apt install -y logrotate software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy
-
 echo "** Restart all services"
+sudo systemctl enable unifi
 sudo service unifi restart
+sudo systemctl enable unifi-video
 sudo service unifi-video restart
+sudo systemctl enable unifi-voip
 sudo service unifi-voip restart
-sudo systemctl disable mongodb
-sudo systemctl stop mongodb
 
 echo "** Add Log Rotation"
 sudo bash -c 'cat >> /etc/logrotate.d/unifi << EOF

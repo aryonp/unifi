@@ -1,24 +1,26 @@
 #!/bin/bash
 clear
+v_unifi=5.10.23
+
 echo "** Starting installation"
 echo ""
 echo "** Add & update needed repositories"
-echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" | sudo tee /etc/apt/sources.list.d/100-ubnt-unifi.list
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 
-sudo apt-add-repository -y ppa:webupd8team/java
+#repo mongodb
+echo 'deb http://archive.raspbian.org/raspbian stretch main contrib non-free rpi' | tee /etc/apt/sources.list.d/mongodb.list 
+wget https://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
 sudo apt update 
 	
-echo "** Install main software"
-sudo apt install -y unifi
-
 echo "** Install supporting software"
-sudo apt install -y logrotate software-properties-common oracle-java8-installer oracle-java8-set-default oracle-java8-unlimited-jce-policy
+sudo apt install -y apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jre-headless mongodb-server
+
+echo "** Install main software"
+wget https://dl.ubnt.com/unifi/${v_unifi}/unifi_sysvinit_all.deb
+sudo dpkg -i unifi_sysvinit_all.deb
+sudo apt install -f
 
 echo "** Restart services"
 sudo systemctl enable unifi
 sudo systemctl start unifi
-sudo systemctl disable mongodb
-sudo systemctl stop mongodb
 
 echo "** Install Log Rotation"
 sudo bash -c 'cat >> /etc/logrotate.d/unifi << EOF
