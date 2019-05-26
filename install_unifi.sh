@@ -12,7 +12,7 @@ echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" 
 sudo apt update
 
 echo "** Install supporting software"
-sudo apt install -y apt-transport-https logrotate software-properties-common openjdk-8-jdk
+sudo apt install -y apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jre-headless mongodb-server
 
 echo "** Install main software"
 sudo apt install -y unifi 
