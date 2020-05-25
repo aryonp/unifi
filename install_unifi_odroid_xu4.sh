@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-v_unifi=5.10.23
+v_unifi=5.12.72
 
 echo "** Starting installation"
 echo ""
