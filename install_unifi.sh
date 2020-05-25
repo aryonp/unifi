@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 clear
-
 v_video=v3.10.12
 v_voip=1.0.6-vfy6nm
 
@@ -14,7 +13,6 @@ sudo apt-get update
 
 echo "** Install supporting software"
 sudo apt update && sudo apt install -y ca-certificates apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jre-headless mongodb-server
-
 
 echo "** Install main software"
 sudo apt install -y unifi 
