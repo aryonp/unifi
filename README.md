@@ -5,7 +5,7 @@ It will install the newest Unifi Controller together with Unifi Video 3.10.2 (No
 
 ## Requirements
 
-You need to install Ubuntu Server 18.04 LTS on some PC/Mini-PC or ODROID XU4 with minimal server installation and get its IP fixed
+You need to install Ubuntu Server 18.04 LTS on some PC/Mini-PC or ODROID XU4/N2 with minimal server installation and get its IP fixed
 
 
 ### Installing
@@ -24,12 +24,21 @@ curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi_o
 
 ```
 
+for ODROID N2
+
+```
+curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi_odroid_n2.sh > /tmp/install_unifi_odroid_n2.sh && sudo bash /tmp/install_unifi_odroid_n2.sh
+
+```
+
 ### What it did
 
 1. It will update your system first
 2. Add needed repositories
-3. Install newest unifi controller and video 3.10.2 (not available on ODROID version)
-4. Restarting unifi services
+3. Install supporting apps
+3. Install newest Unifi Controller and video 3.10.2 (not available on ODROID version)
+4. Restarting Unifi services
+5. Set log for Unifi Controller
 
 ## Authors
 
