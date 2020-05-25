@@ -6,7 +6,7 @@ echo "** Starting installation"
 echo "" 
 echo "** Install supporting software"
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y jsvc openjdk-8-jre-headless ufw libcap2 ca-certificates apt-transport-https gdebi debsums
+sudo apt install -y jsvc logrotate openjdk-8-jre-headless ufw libcap2 ca-certificates apt-transport-https gdebi debsums
 wget -qO - https://www.mongodb.org/static/pgp/server-3.4.asc | sudo apt-key add -
 echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 sudo apt update && sudo apt install -y mongodb-org
