@@ -12,7 +12,7 @@ sudo wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi
 sudo apt-get update
 
 echo "** Install supporting software"
-sudo apt update && sudo apt install -y ca-certificates apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jre-headless mongodb-server
+sudo apt update && sudo apt install -y ca-certificates apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jre-headless mongodb-org
 
 echo "** Install main software"
 sudo apt install -y unifi 
