@@ -44,6 +44,10 @@ curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi_o
 
 * **Aryo Pratama** - (https://github.com/aryonp)
 
+## Special Thanks for MongoDB 3.2 armhf!
+
+* **Dominic Chen** - (https://github.com/ddcc)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
