@@ -1,17 +1,17 @@
 #!/bin/bash
 clear
-v_unifi=5.12.72
+v_unifi=5.13.32
 echo "** Starting installation"
 echo "" 
 echo "** Update everything first"
-sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade
 echo "" 
 echo "** Add needed repositories"
 wget -qO - https://www.mongodb.org/static/pgp/server-3.4.asc | sudo apt-key add -
 echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 echo "" 
 echo "** Install supporting software"
-sudo apt update && sudo apt install -y jsvc logrotate openjdk-8-jre-headless ufw libcap2 ca-certificates apt-transport-https gdebi debsums mongodb-org
+sudo apt update && sudo apt install -y jsvc logrotate openjdk-8-jre-headless ufw libcap2 ca-certificates apt-transport-https gdebi debsums mongodb-org wget curl ufw
 echo "" 
 echo "** Install main software"
 wget https://dl.ubnt.com/unifi/${v_unifi}/unifi_sysvinit_all.deb
@@ -20,6 +20,23 @@ echo ""
 echo "** Restart services"
 sudo systemctl enable unifi
 sudo systemctl start unifi
+echo "" 
+echo "** Open UFW Ports"
+sudo ufw allow 3478/udp
+sudo ufw allow 5514/tcp	
+sudo ufw allow 8080/tcp
+sudo ufw allow 8443/tcp
+sudo ufw allow 8880/tcp
+sudo ufw allow 8843/tcp
+sudo ufw allow 6789/tcp
+sudo ufw allow 27117/tcp
+sudo ufw allow 5656:5699/udp
+sudo ufw allow 10001/udp
+sudo ufw allow 1900/udp
+sudo ufw allow 443
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw allow 8883/tcp
 echo "" 
 echo "** Hold Update for JVSC, Unifi, MongoDB"
 sudo apt-mark hold jsvc
