@@ -11,7 +11,9 @@ wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb-serv
 wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb_3.2.22-2_armhf.deb
 	
 echo "** Install supporting software"
-sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade && sudo apt install -y apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jdk debsums gdebi curl wget speedtest-cli ufw
+sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade 
+sudo apt install -y apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jdk debsums gdebi curl wget speedtest-cli ufw haveged
+
 sudo dpkg -i  mongodb-clients_3.2.22-2_armhf.deb
 sudo apt-get install --fix-broken
 sudo dpkg -i mongodb-server-core_3.2.22-2_armhf.deb
