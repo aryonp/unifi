@@ -13,7 +13,7 @@ echo "** Update everything first"
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade
 
 echo "** Install supporting software & unifi controller"
-sudo apt install -y jsvc logrotate openjdk-8-jre-headless ufw libcap2 ca-certificates apt-transport-https gdebi debsums mongodb-org wget curl ufw speedtest-cli unifi
+sudo apt install -y jsvc logrotate openjdk-8-jre-headless ufw libcap2 ca-certificates apt-transport-https gdebi debsums mongodb-org wget curl ufw speedtest-cli haveged unifi
 
 echo "** Restart services"
 sudo systemctl enable unifi
