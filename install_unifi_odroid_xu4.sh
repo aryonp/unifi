@@ -1,6 +1,5 @@
 #!/bin/bash
 clear
-v_unifi=5.13.32
 
 echo "** Starting installation"
 echo ""
@@ -11,8 +10,10 @@ wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb-serv
 wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb_3.2.22-2_armhf.deb
 	
 echo "** Install supporting software"
+echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' | sudo tee /etc/apt/sources.list.d/100-ubnt-unifi.list
+sudo wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg 
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade 
-sudo apt install -y apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jdk debsums gdebi curl wget speedtest-cli ufw haveged
+sudo apt install -y apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jdk debsums tmux gdebi curl wget speedtest-cli ufw haveged
 
 sudo dpkg -i  mongodb-clients_3.2.22-2_armhf.deb
 sudo apt-get install --fix-broken
@@ -21,8 +22,7 @@ sudo dpkg -i mongodb-server_3.2.22-2_all.deb
 sudo dpkg -i mongodb_3.2.22-2_armhf.deb
 
 echo "** Install main software"
-wget -c https://dl.ubnt.com/unifi/${v_unifi}/unifi_sysvinit_all.deb
-sudo dpkg -i unifi_sysvinit_all.deb
+sudo apt install -y unifi
 
 echo "** Open UFW Ports"
 sudo ufw allow 3478/udp
