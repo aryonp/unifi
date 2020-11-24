@@ -6,14 +6,15 @@ echo "** Add needed repositories"
 wget -qO - https://www.mongodb.org/static/pgp/server-3.4.asc | sudo apt-key add -
 echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
-echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' | sudo tee /etc/apt/sources.list.d/100-ubnt-unifi.list
-sudo wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg 
-
 echo "** Update everything first"
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade
 
 echo "** Install supporting software & unifi controller"
-sudo apt install -y jsvc logrotate openjdk-8-jre-headless ufw libcap2 ca-certificates apt-transport-https gdebi debsums mongodb-org wget curl ufw speedtest-cli haveged unifi
+sudo apt install -y jsvc logrotate openjdk-8-jre-headless ufw libcap2 ca-certificates apt-transport-https gdebi debsums mongodb-org wget curl ufw speedtest-cli haveged
+
+echo "** Install main software"
+wget -c https://dl.ubnt.com/unifi/6.0.36/unifi_sysvinit_all.deb 
+sudo dpkg -i unifi_sysvinit_all.deb
 
 echo "** Restart services"
 sudo systemctl enable unifi
