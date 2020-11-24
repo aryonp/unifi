@@ -8,7 +8,7 @@ wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb-clie
 wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb-server-core_3.2.22-2_armhf.deb
 wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb-server_3.2.22-2_all.deb
 wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb_3.2.22-2_armhf.deb
-wget https://dl.ubnt.com/unifi/6.0.28/unifi_sysvinit_all.deb 
+wget -c https://dl.ubnt.com/unifi/6.0.36/unifi_sysvinit_all.deb 
 	
 echo "** Install supporting software"
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade 
