@@ -1,7 +1,7 @@
 # Ubiquiti Unifi System Installation Automator
 
 ease my works using Ubiquiti Unifi products on Debian/Ubuntu based server.
-It will install the newest Unifi Controller together with Unifi Video 3.10.2 (Not available on ODROID version)
+It will install the newest Unifi Controller only since VoIP and Video has been deprecated lately.
 
 ## Requirements
 
@@ -36,7 +36,6 @@ curl -fsSL https://raw.githubusercontent.com/aryonp/unifi/master/install_unifi_o
 1. It will update your system first
 2. Add needed repositories
 3. Install supporting apps
-3. Install newest Unifi Controller and video 3.10.2 (not available on ODROID version)
 4. Restarting Unifi services
 5. Set log for Unifi Controller
 
