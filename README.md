@@ -5,7 +5,7 @@ It will install the newest Unifi Controller together with Unifi Video 3.10.2 (No
 
 ## Requirements
 
-You need to install Ubuntu Server 18.04 LTS on some PC/Mini-PC or ODROID XU4/N2 with minimal server installation and get its IP fixed
+ODROID XU4 will go as far Ubuntu 18 with MongoDB 3.2.22-2 from Dominic Chen due to dependecies limitations while AMD64/ARM64 based will not be affected by it.
 
 
 ### Installing
