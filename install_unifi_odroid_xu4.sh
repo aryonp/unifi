@@ -1,23 +1,26 @@
 #!/bin/bash
 clear
 
+MONGO_V=3.2.22-2
+UNIFI_V=7.0.25
+
 echo "** Starting installation"
 echo ""
-echo "** Download MongoDB 4.0.13 armhf -- Thx Andrew Harle!"
-wget -c https://github.com/andrewharle/mongodb/releases/download/debian%2F1%254.0.13-1/mongodb-clients_4.0.12-1_armhf.deb
-wget -c https://github.com/andrewharle/mongodb/releases/download/debian%2F1%254.0.12-1/mongodb-server-core_4.0.12-1_armhf.deb
-wget -c https://github.com/andrewharle/mongodb/releases/download/debian%2F1%254.0.12-1/mongodb-server_4.0.12-1_armhf.deb
-wget -c https://github.com/andrewharle/mongodb/releases/download/debian%2F1%254.0.12-1/mongodb_4.0.12-1_armhf.deb
-wget -c https://dl.ubnt.com/unifi/7.0.25/unifi_sysvinit_all.deb 
+echo "** Download MongoDB 3.2.22-2 armhf -- Thx Dominic Chen!"
+wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb-clients_3.2.22-2_armhf.deb
+wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb-server-core_3.2.22-2_armhf.deb
+wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb-server_3.2.22-2_all.deb
+wget -c https://github.com/ddcc/mongodb/releases/download/v3.2.22-2/mongodb_3.2.22-2_armhf.deb
+wget -c https://dl.ubnt.com/unifi/$UNIFI_V/unifi_sysvinit_all.deb 
 	
 echo "** Install supporting software"
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade 
 sudo apt install -y apt-transport-https logrotate software-properties-common ca-certificates-java binutils jsvc libcommons-daemon-java openjdk-8-jdk debsums net-tools nmap tmux gdebi curl wget speedtest-cli ufw haveged
-sudo dpkg -i  mongodb-clients_4.0.12-1_armhf.deb
+sudo dpkg -i  mongodb-clients_$MONGO_V_armhf.deb
 sudo apt-get install --fix-broken
-sudo dpkg -i mongodb-server-core_4.0.12-1_armhf.deb
-sudo dpkg -i mongodb-server_4.0.12-1_all.deb
-sudo dpkg -i mongodb_4.0.12-1_armhf.deb
+sudo dpkg -i mongodb-server-core_$MONGO_V_armhf.deb
+sudo dpkg -i mongodb-server_$MONGO_V_all.deb
+sudo dpkg -i mongodb_$MONGO_V_armhf.deb
 
 echo "** Install main software"
 sudo dpkg -i unifi_sysvinit_all.deb
